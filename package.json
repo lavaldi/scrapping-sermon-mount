@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "playwright": "^1.25.0"
+  },
+  "dependencies": {
+    "@sindresorhus/slugify": "^2.1.0"
   }
 }

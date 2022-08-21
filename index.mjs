@@ -1,5 +1,6 @@
-const { chromium } = require("playwright");
-const fs = require("fs");
+import { chromium } from "playwright";
+import fs from 'fs';
+import slugify from '@sindresorhus/slugify';
 
 (async () => {
   const browser = await chromium.launch();
@@ -41,7 +42,7 @@ const fs = require("fs");
     const setOfContent = new Set(cleanContent);
 
     const [chapterName, _, title, ...paragraphs] = setOfContent;
-    data.push({ chapterName, title, paragraphs });
+    data.push({ id: chapterName ? slugify(chapterName) : chapterName, chapterName, title, paragraphs });
     await page.close();
   }
 
