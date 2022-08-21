@@ -1,4 +1,5 @@
 const { chromium } = require("playwright");
+const fs = require("fs");
 
 (async () => {
   const browser = await chromium.launch();
@@ -44,8 +45,14 @@ const { chromium } = require("playwright");
     await page.close();
   }
 
-  // TODO: Save data to a JSON file
-
   await browser.close();
+
+  fs.writeFile("sermon.json", JSON.stringify(data, null, 2), (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.info("Successfully written data to file");
+  });
 })();
 
